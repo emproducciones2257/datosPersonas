@@ -15,7 +15,6 @@ public class conectFirebase {
 	private conectFirebase() {
 		firestore=initFirebase();
 	}
-	//tempora
 	public static Firestore getFirestore() {
 		if(firestore==null) {
 			firestore=initFirebase();
