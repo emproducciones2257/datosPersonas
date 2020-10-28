@@ -20,6 +20,7 @@ public class conectFirebase {
 			firestore=initFirebase();
 		}
 		return firestore;
+		//hola desca aca
 	}
 
 	public static Firestore initFirebase() {
