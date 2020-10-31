@@ -9,7 +9,6 @@ public class frameIni extends JFrame {
 	public frameIni() {
 	}
 
-	
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {

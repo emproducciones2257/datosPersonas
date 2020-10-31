@@ -41,6 +41,14 @@ public class dtosPersona {
 		this.patentes = patentes;
 	}
 
+	public dtosPersona(String nombre, String apellido, String dni, String nroTramite) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.nroTramite = nroTramite;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,16 +1,10 @@
 package View;
 
-import java.awt.Color;
-import java.awt.SystemColor;
-
+import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import Control.controlPnlIzquierdo;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class pnlIzquierdo extends JPanel{
 	
@@ -25,7 +19,6 @@ public class pnlIzquierdo extends JPanel{
 		setLayout(null);
 		this.pnlDerecho = pnlDerecho;
 		iniciarComponentes();
-
 	}
 
 	private void iniciarComponentes() {
@@ -37,13 +30,17 @@ public class pnlIzquierdo extends JPanel{
 		btnCargaTeclado.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
 		add(btnCargaTeclado);
 		
-		btnCargaCuil = new JButton("New button");
-		btnCargaCuil.setBounds(26, 121, 89, 23);
+		btnCargaCuil = new JButton("");
+		btnCargaCuil.setBackground(SystemColor.textHighlight);
+		btnCargaCuil.setIcon(new ImageIcon(pnlIzquierdo.class.getResource("/res/internet_64px.png")));
+		btnCargaCuil.setBounds(36, 252, 79, 74);
 		btnCargaCuil.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
 		add(btnCargaCuil);
 		
-		btnCargaScan = new JButton("New button");
-		btnCargaScan.setBounds(26, 171, 89, 23);
+		btnCargaScan = new JButton("");
+		btnCargaScan.setBackground(SystemColor.textHighlight);
+		btnCargaScan.setIcon(new ImageIcon(pnlIzquierdo.class.getResource("/res/barcode_reader_64px.png")));
+		btnCargaScan.setBounds(36, 144, 79, 74);
 		btnCargaScan.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
 		add(btnCargaScan);
 		
@@ -64,6 +61,5 @@ public class pnlIzquierdo extends JPanel{
 
 	public JButton getBtnCargaScan() {
 		return btnCargaScan;
-	}
-	
+	}	
 }

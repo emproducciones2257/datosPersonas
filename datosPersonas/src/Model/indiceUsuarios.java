@@ -2,7 +2,7 @@ package Model;
 
 import com.google.cloud.firestore.DocumentReference;
 
-public class indiceUsuarios {
+public class indiceUsuarios implements Comparable<indiceUsuarios>{
 	
 	private String apellido;
 	private String nombre;
@@ -16,8 +16,6 @@ public class indiceUsuarios {
 		this.nombre = nombre;
 		this.dtosPersona = dtosPersona;
 	}
-
-
 
 	public String getApellido() {
 		return apellido;
@@ -47,4 +45,25 @@ public class indiceUsuarios {
 	public String toString() {
 		return apellido+", " + nombre;
 	}
+
+	@Override
+	public int compareTo(indiceUsuarios persona) {
+		
+		int i = 0;
+		
+		if(persona.getApellido().compareToIgnoreCase(this.getApellido())<0)i = 1;
+		
+		if(persona.getApellido().compareToIgnoreCase(this.getApellido())>0)i = - 1;
+		
+		if(persona.getApellido().compareToIgnoreCase(this.getApellido())==0) {
+			
+			if(persona.getNombre().compareToIgnoreCase(this.getNombre())<0)i =1;
+			
+			if(persona.getNombre().compareToIgnoreCase(this.getNombre())>0)i = - 1;
+			
+			if(persona.getNombre().compareToIgnoreCase(this.getNombre())==0)i = 0;
+		};
+		
+		return i;
+	}	
 }

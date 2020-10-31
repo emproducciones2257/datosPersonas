@@ -1,32 +1,17 @@
 package View;
 
-import java.awt.Color;
-import java.awt.List;
-import java.awt.SystemColor;
-
+import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import Cloud.repositorio;
+import Control.controlBtnPortapapeles;
 import Control.controlPnlDerecho;
-import Model.constantes;
-import Model.dtosPersona;
-import Model.indiceUsuarios;
-
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+import Model.*;
+import javax.swing.*;
+import java.util.*;
 
 public class pnlDerecho extends JPanel{
-	
-	
+		
 	private JComboBox<String> cmbNombres,cmbPatente;
 	private JTextField txtNombre,txtApellido,txtDni,txtNTramite,txtCodDni,txtCuil,txtCodArea,txtNumerTel,txtEmail,txtDireccion,txtCP,txtLocalidad,txtIngresoPatente;
 	private JButton btnBuscar,btnGuardar,btnAgregarPtente,copiaNombre,copiaApellido,copiaDNI,copiaNTramite,copiaCUIL,copiaNumero,copiaCaracteristica,copiaEmail,copiaCP,copiaLocalidad,copiaPatente,copiaDomicilio;
@@ -36,16 +21,17 @@ public class pnlDerecho extends JPanel{
 	private repositorio repo;
 	private ArrayList<JButton> btnHabilitar;
 
-
 	public pnlDerecho() {
 		setBorder(new LineBorder(Color.BLACK));
 		setBackground(SystemColor.text);
 		setBounds(154, 0, 630, 561);
 		setLayout(null);
-		repo = new repositorio();
 		
-		iniciarComponentes();	
-		cargarComboNombres();			
+		repo = new repositorio(this);
+		
+		iniciarComponentes();
+		datos = repo.getDtos();
+		cargarComboNombres(datos);			
 		cargarArrayBtn();		
 	}
 	
@@ -201,6 +187,7 @@ public class pnlDerecho extends JPanel{
 		copiaNombre = new JButton("");
 		copiaNombre.setBackground(SystemColor.text);
 		copiaNombre.setForeground(Color.WHITE);
+		copiaNombre.addActionListener(new controlBtnPortapapeles(this));
 		copiaNombre.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaNombre.setBounds(168, 97, 40, 40);
 		add(copiaNombre);
@@ -208,12 +195,14 @@ public class pnlDerecho extends JPanel{
 		copiaApellido = new JButton("");
 		copiaApellido.setBackground(SystemColor.text);
 		copiaApellido.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
+		copiaApellido.addActionListener(new controlBtnPortapapeles(this));
 		copiaApellido.setBounds(393, 97, 40, 40);
 		add(copiaApellido);
 		
 		copiaDNI = new JButton("");
 		copiaDNI.setBackground(SystemColor.text);
 		copiaDNI.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
+		copiaDNI.addActionListener(new controlBtnPortapapeles(this));
 		copiaDNI.setBounds(555, 97, 40, 40);
 		add(copiaDNI);
 		
@@ -221,60 +210,70 @@ public class pnlDerecho extends JPanel{
 		copiaNTramite.setBackground(SystemColor.text);
 		copiaNTramite.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaNTramite.setBounds(168, 192, 40, 40);
+		copiaNTramite.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaNTramite);
 		
 		copiaCodigoDNI = new JButton("");
 		copiaCodigoDNI.setBackground(SystemColor.text);
 		copiaCodigoDNI.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaCodigoDNI.setBounds(359, 192, 40, 40);
+		copiaCodigoDNI.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaCodigoDNI);
 		
 		copiaCUIL = new JButton("");
 		copiaCUIL.setBackground(SystemColor.text);
 		copiaCUIL.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaCUIL.setBounds(542, 192, 40, 40);
+		copiaCUIL.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaCUIL);
 		
 		copiaNumero = new JButton("");
 		copiaNumero.setBackground(SystemColor.text);
 		copiaNumero.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaNumero.setBounds(259, 288, 40, 40);
+		copiaNumero.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaNumero);
 		
 		copiaCaracteristica = new JButton("");
 		copiaCaracteristica.setBackground(SystemColor.text);
 		copiaCaracteristica.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaCaracteristica.setBounds(89, 288, 40, 40);
+		copiaCaracteristica.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaCaracteristica);
 		
 		copiaEmail = new JButton("");
 		copiaEmail.setBackground(SystemColor.text);
 		copiaEmail.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaEmail.setBounds(553, 288, 40, 40);
+		copiaEmail.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaEmail);
 		
 		copiaCP = new JButton("");
 		copiaCP.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaCP.setBackground(Color.WHITE);
 		copiaCP.setBounds(326, 398, 40, 40);
+		copiaCP.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaCP);
 		
 		copiaLocalidad = new JButton("");
 		copiaLocalidad.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaLocalidad.setBackground(Color.WHITE);
 		copiaLocalidad.setBounds(526, 398, 40, 40);
+		copiaLocalidad.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaLocalidad);
 		
 		copiaPatente = new JButton("");
 		copiaPatente.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaPatente.setBackground(Color.WHITE);
 		copiaPatente.setBounds(132, 475, 40, 40);
+		copiaPatente.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaPatente);
 		
 		copiaDomicilio = new JButton("");
 		copiaDomicilio.setIcon(new ImageIcon(pnlDerecho.class.getResource(constantes.ICON)));
 		copiaDomicilio.setBackground(Color.WHITE);
 		copiaDomicilio.setBounds(151, 398, 40, 40);
+		copiaDomicilio.addActionListener(new controlBtnPortapapeles(this));
 		add(copiaDomicilio);
 		
 		btnAgregarPtente = new JButton("AGREGAR");
@@ -288,19 +287,32 @@ public class pnlDerecho extends JPanel{
 		txtIngresoPatente.setBounds(203, 494, 86, 20);
 		add(txtIngresoPatente);
 		txtIngresoPatente.setColumns(10);
-		
 	}
 	
-	private void cargarComboNombres() {
-		datos = repo.getDtos();
+	private void cargarComboNombres(ArrayList<indiceUsuarios> datitos) {
 		
-		for (int i = 0; i < datos.size(); i++) {
-			cmbNombres.addItem(datos.get(i).toString());
-		}		
+		if(!datitos.isEmpty()) {
+			for (int i = 0; i < datos.size(); i++) {
+				cmbNombres.addItem(datos.get(i).toString());
+			}
+		}	
 	}
-
+	
+	public void actualizarListaNombresDisponibles(indiceUsuarios cargarPersonaEnIndices) {	
+		
+		datos.add(cargarPersonaEnIndices);		
+		Collections.sort(datos);		
+		cmbNombres.removeAllItems();		
+		cargarComboNombres(datos);					
+	}
+	
 	public indiceUsuarios getElementoSeleccionado() {
-		return datos.get(cmbNombres.getSelectedIndex());
+		if(cmbNombres.getSelectedIndex()==-1)return null;
+		else return datos.get(cmbNombres.getSelectedIndex());		
+	}
+	
+	public String getPatenteSeleccionada() {
+		return cmbPatente.getSelectedItem().toString();
 	}
 
 	public JTextField getTxtNombre() {
@@ -368,7 +380,7 @@ public class pnlDerecho extends JPanel{
 	}
 
 	public JButton getCopiaDNI() {
-		return copiaCodigoDNI;
+		return copiaDNI;
 	}
 
 	public JButton getCopiaNTramite() {
@@ -414,16 +426,27 @@ public class pnlDerecho extends JPanel{
 	public JButton getBtnAgregarPtente() {
 		return btnAgregarPtente;
 	}
-
-	public void mostrarDtosPersona(dtosPersona persona) {
+	public void habilitarOpcionesCargas() {
+		
+		limpiarVistas();
+		habilitarBtnPortapapeles();
+		habilitarOpciones(true);
+	}
+	
+	public void mostrarDtosXScan(dtosPersona persona) {
 		
 		habilitarBtnPortapapeles();
 		
-		txtNombre.setText(persona.getNombre().toUpperCase());
-		txtApellido.setText(persona.getApellido().toUpperCase());
-		txtDni.setText(persona.getDni().toUpperCase());
+		txtNombre.setText(persona.getNombre());
+		txtApellido.setText(persona.getApellido());
+		txtDni.setText(persona.getDni());
 		txtNTramite.setText(persona.getNroTramite());
 		txtCuil.setText(persona.getCuil());
+	}
+
+	public void mostrarDtosPersona(dtosPersona persona) {
+		
+		mostrarDtosXScan(persona);		
 		txtCodDni.setText(persona.getCodDni());
 		txtCodArea.setText(persona.getCodArea());
 		txtNumerTel.setText(persona.getNumeroTel());
@@ -432,15 +455,17 @@ public class pnlDerecho extends JPanel{
 		txtCP.setText(persona.getCp());
 		txtLocalidad.setText(persona.getLocalidad());
 		
+		cmbPatente.removeAllItems();
+		
 		if(persona.getPatentes().isEmpty()) {
 			copiaPatente.setEnabled(false);
 			cmbPatente.addItem("-");
 		}else {
 			for (String patente : persona.getPatentes()) {
 				cmbPatente.addItem(patente);
-			}
+			}		
 		}
-		
+				
 		if(persona.getCodDni().equals("-")) copiaCodigoDNI.setEnabled(false);		
 		
 		if(persona.getCodArea().equals("-")) copiaCaracteristica.setEnabled(false);
@@ -453,8 +478,7 @@ public class pnlDerecho extends JPanel{
 				
 		if(persona.getCp().equals("-")) copiaCP.setEnabled(false);
 			
-		if(persona.getLocalidad().equals("-")) copiaLocalidad.setEnabled(false);
-		
+		if(persona.getLocalidad().equals("-")) copiaLocalidad.setEnabled(false);		
 	}
 	
 	public void agregarPatenteCmb(String patente) {
@@ -462,7 +486,7 @@ public class pnlDerecho extends JPanel{
 		txtIngresoPatente.setText("");
 	}
 
-	public void habilitarBtnPortapapeles() {
+	private void habilitarBtnPortapapeles() {
 		for (JButton botoncito : btnHabilitar) {
 			botoncito.setEnabled(true);
 		}
@@ -498,16 +522,14 @@ public class pnlDerecho extends JPanel{
 				txtDni.getText().equals("") ||
 				txtNTramite.getText().equals("") ||
 				txtCuil.getText().equals(""))return false;
-		else return true;
-		
+		else return true;	
 	}
 
 	public dtosPersona obtenerUsuario() {
 		
-		dtosPersona chango = new dtosPersona();
-		
-		chango.setNombre(txtNombre.getText().toLowerCase());
-		chango.setApellido(txtApellido.getText().toLowerCase());
+		dtosPersona chango = new dtosPersona();		
+		chango.setNombre(txtNombre.getText().toUpperCase());
+		chango.setApellido(txtApellido.getText().toUpperCase());
 		chango.setDni(txtDni.getText());
 		chango.setNroTramite(txtNTramite.getText());
 		chango.setCuil(txtCuil.getText());
@@ -524,7 +546,7 @@ public class pnlDerecho extends JPanel{
 		}
 		
 		if (txtDireccion.getText().equals("")) chango.setDomicilio(constantes.DATO_NULO);
-		else chango.setDomicilio(txtDireccion.getText());
+		else chango.setDomicilio(txtDireccion.getText().toUpperCase());
 		
 		if (txtEmail.getText().equals("")) chango.setEmail(constantes.DATO_NULO);
 		else chango.setEmail(txtEmail.getText());
@@ -533,7 +555,7 @@ public class pnlDerecho extends JPanel{
 		else chango.setCp(txtCP.getText());
 		
 		if (txtLocalidad.getText().equals("")) chango.setLocalidad(constantes.DATO_NULO);
-		else chango.setLocalidad(txtLocalidad.getText());
+		else chango.setLocalidad(txtLocalidad.getText().toUpperCase());
 		
 		if(cmbPatente.getItemCount()==0) chango.setPatentes(new ArrayList<String>());
 		else {
