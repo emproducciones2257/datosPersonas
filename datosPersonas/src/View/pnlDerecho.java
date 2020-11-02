@@ -30,8 +30,8 @@ public class pnlDerecho extends JPanel{
 		repo = new repositorio(this);
 		
 		iniciarComponentes();
-		datos = repo.getDtos();
-		cargarComboNombres(datos);			
+		//datos = repo.getDtos();
+		//cargarComboNombres(datos);			
 		cargarArrayBtn();		
 	}
 	

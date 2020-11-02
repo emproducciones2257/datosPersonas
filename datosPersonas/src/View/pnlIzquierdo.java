@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class pnlIzquierdo extends JPanel{
 	
-	private JButton btnCargaTeclado,btnCargaCuil,btnCargaScan;
+	private JButton btnCargaTeclado,btnCargaCuil,btnCargaScan,btnAnotaciones;
 	private JLabel lblNewLabel;
 	private pnlDerecho pnlDerecho;
 	
@@ -33,7 +33,7 @@ public class pnlIzquierdo extends JPanel{
 		btnCargaCuil = new JButton("");
 		btnCargaCuil.setBackground(SystemColor.textHighlight);
 		btnCargaCuil.setIcon(new ImageIcon(pnlIzquierdo.class.getResource("/res/internet_64px.png")));
-		btnCargaCuil.setBounds(36, 252, 79, 74);
+		btnCargaCuil.setBounds(36, 253, 79, 74);
 		btnCargaCuil.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
 		add(btnCargaCuil);
 		
@@ -44,11 +44,22 @@ public class pnlIzquierdo extends JPanel{
 		btnCargaScan.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
 		add(btnCargaScan);
 		
+		btnAnotaciones = new JButton("");
+		btnAnotaciones.setBackground(SystemColor.textHighlight);
+		btnAnotaciones.setIcon(new ImageIcon(pnlIzquierdo.class.getResource("/res/edit_property_40px.png")));
+		btnAnotaciones.setBounds(36, 424, 97, 83);
+		btnAnotaciones.addActionListener(new controlPnlIzquierdo(this,pnlDerecho));
+		add(btnAnotaciones);
+		
 		lblNewLabel = new JLabel("REGISTRAR USUARIO");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(21, 11, 133, 14);
 		add(lblNewLabel);
 		
+		JLabel lblNewLabel_1 = new JLabel("ANOTACIONES");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(36, 384, 97, 14);
+		add(lblNewLabel_1);		
 	}
 
 	public JButton getBtnCargaTeclado() {
@@ -61,5 +72,9 @@ public class pnlIzquierdo extends JPanel{
 
 	public JButton getBtnCargaScan() {
 		return btnCargaScan;
-	}	
+	}
+	
+	public JButton getBtnAnotaciones() {
+		return btnAnotaciones;
+	}
 }

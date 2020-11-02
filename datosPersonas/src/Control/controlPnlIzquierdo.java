@@ -62,6 +62,14 @@ public class controlPnlIzquierdo implements ActionListener{
 					pnlDerecho.mostrarDtosXScan(persona);					
 				}				
 			}		
-		}		
+		}
+		
+		if(e.getSource().equals(pnlIzquierdo.getBtnAnotaciones())){
+			
+			FrameAnotaciones anotaciones = new FrameAnotaciones();
+			
+			anotaciones.setVisible(true);
+			
+		}
 	}
 }
