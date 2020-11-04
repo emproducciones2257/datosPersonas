@@ -43,6 +43,14 @@ public class anotaciones {
 		this.pasw = pasw;
 	}
 
+	public String getSitio() {
+		return Sitio;
+	}
+
+	public void setSitio(String sitio) {
+		Sitio = sitio;
+	}
+
 	@Override
 	public String toString() {
 		return "anotaciones [nombre=" + nombre + ", user=" + user + ", pasw=" + pasw + ", Sitio=" + Sitio + "]";

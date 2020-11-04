@@ -35,6 +35,8 @@ public class ventanasAvisos {
 
 	public static final String INGRESAR_DNI = "Ingresar DNI";
 
+	public static final String NO_HAY_ANOTACIONES_CATEGORIA = "No se registras anotaciones para esta categoria";
+
 	
 	public ventanasAvisos(JPanel vista) {
 		this.vista=vista;

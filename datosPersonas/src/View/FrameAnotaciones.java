@@ -23,6 +23,7 @@ public class FrameAnotaciones extends JFrame {
 	private JScrollPane scrollPane;
 	private String [] nombreColumnas = {"Nombre","Usuario","Clave"};
 	private ArrayList<anotaciones> datos;
+	private ventanasAvisos avisos;
 
 	 
 	public FrameAnotaciones() {
@@ -38,6 +39,8 @@ public class FrameAnotaciones extends JFrame {
 		
 		datos = new ArrayList<>();
 		
+		avisos = new ventanasAvisos(contentPane);
+		
 		btnBip = new JButton("bip");
 		btnBip.setBounds(24, 11, 89, 23);
 		btnBip.addActionListener(new controlAnotaciones(this));
@@ -45,10 +48,12 @@ public class FrameAnotaciones extends JFrame {
 		
 		btnAfip = new JButton("afip");
 		btnAfip.setBounds(240, 11, 89, 23);
+		btnAfip.addActionListener(new controlAnotaciones(this));
 		contentPane.add(btnAfip);
 		
 		btnEmail = new JButton("email");
 		btnEmail.setBounds(456, 11, 89, 23);
+		btnEmail.addActionListener(new controlAnotaciones(this));
 		contentPane.add(btnEmail);
 		
 		scrollPane = new JScrollPane();
@@ -73,6 +78,14 @@ public class FrameAnotaciones extends JFrame {
 		return btnEmail;
 	}
 
+	public ArrayList<anotaciones> getDatos() {
+		return datos;
+	}
+
+	public void setDatos(ArrayList<anotaciones> datos) {
+		this.datos = datos;
+	}
+
 	public void cargarArchivo(ArrayList<anotaciones> datos) {
 		
 		for (anotaciones anotaciones : datos) {
@@ -94,7 +107,7 @@ public class FrameAnotaciones extends JFrame {
 	    		 aModel.setValueAt(datos.get(i).getUser(), i, 1);
 	    		 aModel.setValueAt(datos.get(i).getPasw(), i, 2); 
 			}
-	     }
+	     }else avisos.ProductoNoReg(ventanasAvisos.NO_HAY_ANOTACIONES_CATEGORIA);
 	     tblDtos.setModel(aModel);
 	}
 	
