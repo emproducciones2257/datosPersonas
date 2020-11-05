@@ -1,7 +1,6 @@
 package Control;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import Cloud.consultaAnotaciones;
@@ -30,7 +29,6 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.BIP)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.BIP;
 				anotaciones = new ArrayList<>();
@@ -47,7 +45,6 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.AFIP)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.AFIP;
 				anotaciones = new ArrayList<>();
@@ -64,7 +61,6 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.Email)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.Email;
 				anotaciones = new ArrayList<>();

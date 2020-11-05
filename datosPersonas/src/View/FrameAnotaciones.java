@@ -1,14 +1,10 @@
 package View;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import Control.controlAnotaciones;
@@ -24,6 +20,7 @@ public class FrameAnotaciones extends JFrame {
 	private String [] nombreColumnas = {"Nombre","Usuario","Clave"};
 	private ArrayList<anotaciones> datos;
 	private ventanasAvisos avisos;
+	private controlAnotaciones contro;
 
 	 
 	public FrameAnotaciones() {
@@ -41,19 +38,21 @@ public class FrameAnotaciones extends JFrame {
 		
 		avisos = new ventanasAvisos(contentPane);
 		
+		contro = new controlAnotaciones(this);
+		
 		btnBip = new JButton("bip");
 		btnBip.setBounds(24, 11, 89, 23);
-		btnBip.addActionListener(new controlAnotaciones(this));
+		btnBip.addActionListener(contro);
 		contentPane.add(btnBip);
 		
 		btnAfip = new JButton("afip");
 		btnAfip.setBounds(240, 11, 89, 23);
-		btnAfip.addActionListener(new controlAnotaciones(this));
+		btnAfip.addActionListener(contro);
 		contentPane.add(btnAfip);
 		
 		btnEmail = new JButton("email");
 		btnEmail.setBounds(456, 11, 89, 23);
-		btnEmail.addActionListener(new controlAnotaciones(this));
+		btnEmail.addActionListener(contro);
 		contentPane.add(btnEmail);
 		
 		scrollPane = new JScrollPane();

@@ -1,20 +1,10 @@
 package Cloud;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.Query;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-
-import Model.anotaciones;
-import Model.constantes;
+import com.google.cloud.firestore.*;
+import Model.*;
 import View.ventanasAvisos;
 
 public class consultaAnotaciones {
@@ -22,6 +12,9 @@ public class consultaAnotaciones {
 	private ventanasAvisos avisos;
 	private CollectionReference refAnotaciones;
 	private ArrayList<anotaciones> anotaciones;
+	private Query query;
+	private ApiFuture<QuerySnapshot> consulta;
+	private List<QueryDocumentSnapshot> documents;
 	
 	public consultaAnotaciones() {
 		avisos = new ventanasAvisos(null);
@@ -29,9 +22,6 @@ public class consultaAnotaciones {
 
 	public ArrayList<anotaciones> recuperarAnotaciones(String eleccion) {
 
-		Query query;
-		ApiFuture<QuerySnapshot> consulta;
-		List<QueryDocumentSnapshot> documents;
 		anotaciones = new ArrayList<>();
 		
 		try {
