@@ -3,6 +3,9 @@ package Cloud;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
@@ -18,19 +21,21 @@ public class consultaAnotaciones {
 	
 	private ventanasAvisos avisos;
 	private CollectionReference refAnotaciones;
-	private Query query;
-	private ApiFuture<QuerySnapshot> consulta;
-	private List<QueryDocumentSnapshot> documents;
+	private ArrayList<anotaciones> anotaciones;
 	
 	public consultaAnotaciones() {
 		avisos = new ventanasAvisos(null);
 	}
 
 	public ArrayList<anotaciones> recuperarAnotaciones(String eleccion) {
-		
-		ArrayList<anotaciones> anotaciones = new ArrayList<>();
 
+		Query query;
+		ApiFuture<QuerySnapshot> consulta;
+		List<QueryDocumentSnapshot> documents;
+		anotaciones = new ArrayList<>();
+		
 		try {
+			
 			refAnotaciones = conectFirebase.getFirestore().collection(constantes.ANOTACIONES);
 			
 			query = refAnotaciones.whereEqualTo(constantes.Sitio, eleccion);
@@ -53,7 +58,4 @@ public class consultaAnotaciones {
 	
 		return anotaciones;
 	}
-	
-	
-
 }

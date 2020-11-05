@@ -85,13 +85,6 @@ public class FrameAnotaciones extends JFrame {
 	public void setDatos(ArrayList<anotaciones> datos) {
 		this.datos = datos;
 	}
-
-	public void cargarArchivo(ArrayList<anotaciones> datos) {
-		
-		for (anotaciones anotaciones : datos) {
-			this.datos=datos;
-		}		
-	}
 	
 	public void modeloTabla() {
 		

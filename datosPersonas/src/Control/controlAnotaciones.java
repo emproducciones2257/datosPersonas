@@ -2,20 +2,24 @@ package Control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import Cloud.consultaAnotaciones;
+import Model.anotaciones;
 import Model.constantes;
 import View.FrameAnotaciones;
 
 public class controlAnotaciones implements ActionListener {
 	
 	private FrameAnotaciones fAnotacion;
-	private String eleccion = "";
+	private String eleccion = "puto";
 	private consultaAnotaciones queryAnot;
+	private ArrayList<anotaciones> anotaciones;
 	
 	public controlAnotaciones(FrameAnotaciones fAnotacion) {
 		this.fAnotacion = fAnotacion;
 		queryAnot = new consultaAnotaciones();
+		anotaciones = new ArrayList<>();
 	}
 
 	@Override
@@ -26,12 +30,16 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.BIP)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
+				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.BIP;
-				fAnotacion.setDatos(queryAnot.recuperarAnotaciones(eleccion));
+				anotaciones = new ArrayList<>();
+				queryAnot = new consultaAnotaciones();
+				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
+				fAnotacion.setDatos(anotaciones);
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-			}			
+			}
 		}
 		
 		if(e.getSource().equals(fAnotacion.getBtnAfip())) {
@@ -39,12 +47,16 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.AFIP)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
+				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.AFIP;
-				fAnotacion.setDatos(queryAnot.recuperarAnotaciones(eleccion));
+				anotaciones = new ArrayList<>();
+				queryAnot = new consultaAnotaciones();
+				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
+				fAnotacion.setDatos(anotaciones);
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-			}			
+			}
 		}
 		
 		if(e.getSource().equals(fAnotacion.getBtnEmail())) {
@@ -52,12 +64,16 @@ public class controlAnotaciones implements ActionListener {
 			if(eleccion.equals(constantes.Email)) {
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
+				System.out.println(eleccion);
 			}else {
 				eleccion = constantes.Email;
-				fAnotacion.setDatos(queryAnot.recuperarAnotaciones(eleccion));
+				anotaciones = new ArrayList<>();
+				queryAnot = new consultaAnotaciones();
+				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
+				fAnotacion.setDatos(anotaciones);
 				fAnotacion.limpiarTabla();
 				fAnotacion.modeloTabla();
-			}			
+			}	
 		}
 	}
 }
