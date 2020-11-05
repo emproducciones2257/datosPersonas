@@ -11,7 +11,7 @@ import View.FrameAnotaciones;
 public class controlAnotaciones implements ActionListener {
 	
 	private FrameAnotaciones fAnotacion;
-	private String eleccion = "puto";
+	private String eleccion = "";
 	private consultaAnotaciones queryAnot;
 	private ArrayList<anotaciones> anotaciones;
 	
@@ -26,50 +26,33 @@ public class controlAnotaciones implements ActionListener {
 		
 		if(e.getSource().equals(fAnotacion.getBtnBip())) {
 			
-			if(eleccion.equals(constantes.BIP)) {
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}else {
-				eleccion = constantes.BIP;
-				anotaciones = new ArrayList<>();
-				queryAnot = new consultaAnotaciones();
-				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
-				fAnotacion.setDatos(anotaciones);
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}
+			consultaAnotaciones(constantes.BIP);
 		}
 		
 		if(e.getSource().equals(fAnotacion.getBtnAfip())) {
 			
-			if(eleccion.equals(constantes.AFIP)) {
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}else {
-				eleccion = constantes.AFIP;
-				anotaciones = new ArrayList<>();
-				queryAnot = new consultaAnotaciones();
-				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
-				fAnotacion.setDatos(anotaciones);
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}
+			consultaAnotaciones(constantes.AFIP);
 		}
 		
 		if(e.getSource().equals(fAnotacion.getBtnEmail())) {
 			
-			if(eleccion.equals(constantes.Email)) {
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}else {
-				eleccion = constantes.Email;
-				anotaciones = new ArrayList<>();
-				queryAnot = new consultaAnotaciones();
-				anotaciones = queryAnot.recuperarAnotaciones(eleccion);
-				fAnotacion.setDatos(anotaciones);
-				fAnotacion.limpiarTabla();
-				fAnotacion.modeloTabla();
-			}	
+			consultaAnotaciones(constantes.Email);	
+		}
+	}
+
+	private void consultaAnotaciones(String sitio) {
+		
+		if(eleccion.equals(sitio)) {
+			fAnotacion.limpiarTabla();
+			fAnotacion.modeloTabla();
+		}else {
+			eleccion = sitio;
+			anotaciones = new ArrayList<>();
+			queryAnot = new consultaAnotaciones();
+			anotaciones = queryAnot.recuperarAnotaciones(eleccion);
+			fAnotacion.setDatos(anotaciones);
+			fAnotacion.limpiarTabla();
+			fAnotacion.modeloTabla();
 		}
 	}
 }

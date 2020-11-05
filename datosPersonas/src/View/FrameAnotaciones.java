@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Control.controlAnotaciones;
 import Model.anotaciones;
+import java.awt.Color;
 
 public class FrameAnotaciones extends JFrame {
 
@@ -24,6 +25,7 @@ public class FrameAnotaciones extends JFrame {
 
 	 
 	public FrameAnotaciones() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAnotaciones.class.getResource("/res/edit_property_40px.png")));
 		setTitle("Anotaciones");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,8 +42,10 @@ public class FrameAnotaciones extends JFrame {
 		
 		contro = new controlAnotaciones(this);
 		
-		btnBip = new JButton("bip");
-		btnBip.setBounds(24, 11, 89, 23);
+		btnBip = new JButton("");
+		btnBip.setBackground(Color.WHITE);
+		btnBip.setIcon(new ImageIcon(FrameAnotaciones.class.getResource("/res/bip.png")));
+		btnBip.setBounds(24, 11, 89, 89);
 		btnBip.addActionListener(contro);
 		contentPane.add(btnBip);
 		
@@ -56,7 +60,7 @@ public class FrameAnotaciones extends JFrame {
 		contentPane.add(btnEmail);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 75, 537, 171);
+		scrollPane.setBounds(24, 111, 537, 171);
 		contentPane.add(scrollPane);
 					
 		tblDtos = new JTable();
