@@ -16,7 +16,7 @@ public class constantes {
 	
 	//campos colecciones
 	public static final String CAMPO_DNI = "dni";
-	public static final String Sitio = "Sitio";
+	public static final String Sitio = "sitio";
 	
 	//URL Dateas
 	public static final String URL_DATEAS = "https://www.dateas.com/es/consulta_cuit_cuil?name=&cuit=";

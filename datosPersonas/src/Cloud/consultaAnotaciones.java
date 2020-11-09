@@ -15,6 +15,7 @@ public class consultaAnotaciones {
 	private Query query;
 	private ApiFuture<QuerySnapshot> consulta;
 	private List<QueryDocumentSnapshot> documents;
+	private ApiFuture<DocumentReference> future;
 	
 	public consultaAnotaciones() {
 		avisos = new ventanasAvisos(null);
@@ -47,5 +48,21 @@ public class consultaAnotaciones {
 		//Collections.sort(datos);
 	
 		return anotaciones;
+	}
+
+	public void agregarAnotacion(Model.anotaciones an) {
+			
+		try {
+			refAnotaciones = conectFirebase.getFirestore().collection(constantes.ANOTACIONES);
+			
+			future = refAnotaciones.add(an);
+			System.out.println("Added document with ID: " + future.get().getId());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

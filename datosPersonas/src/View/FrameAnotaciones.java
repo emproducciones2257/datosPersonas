@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -14,8 +15,8 @@ import javax.swing.border.TitledBorder;
 
 public class FrameAnotaciones extends JFrame {
 
-	private JPanel contentPane;
-	private JButton btnBip, btnAfip, btnEmail;
+	private JPanel contentPane,pnlIngresoAnotaciones;
+	private JButton btnBip, btnAfip, btnEmail, btnRegistrar;
 	private JTable tblDtos;
 	private DefaultTableModel aModel;
 	private JScrollPane scrollPane;
@@ -25,11 +26,10 @@ public class FrameAnotaciones extends JFrame {
 	private controlAnotaciones contro;
 	private ButtonGroup buttonGroup;
 	private JRadioButton rdBtnBip,rdBtnAfip,rdBtnEmail;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtNombre,txtUser,txtPasw;
+	private JLabel lblNewLabel,lblNewLabel_1,lblNewLabel_2;
 
-	 
+	
 	public FrameAnotaciones() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAnotaciones.class.getResource("/res/edit_property_40px.png")));
@@ -79,57 +79,59 @@ public class FrameAnotaciones extends JFrame {
 		
 		scrollPane.setViewportView(tblDtos);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Agregar - Editar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 293, 559, 143);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		pnlIngresoAnotaciones = new JPanel();
+		pnlIngresoAnotaciones.setBackground(SystemColor.menu);
+		pnlIngresoAnotaciones.setBorder(new TitledBorder(null, "Agregar - Editar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlIngresoAnotaciones.setBounds(10, 293, 559, 143);
+		contentPane.add(pnlIngresoAnotaciones);
+		pnlIngresoAnotaciones.setLayout(null);
 		
 		rdBtnBip = new JRadioButton("Bip");
 		rdBtnBip.setBounds(6, 16, 109, 23);
-		panel.add(rdBtnBip);
+		pnlIngresoAnotaciones.add(rdBtnBip);
 		buttonGroup.add(rdBtnBip);
 		
 		rdBtnAfip = new JRadioButton("Afip");
 		rdBtnAfip.setBounds(222, 16, 109, 23);
-		panel.add(rdBtnAfip);
+		pnlIngresoAnotaciones.add(rdBtnAfip);
 		buttonGroup.add(rdBtnAfip);
 		
 		rdBtnEmail = new JRadioButton("Email");
 		rdBtnEmail.setBounds(444, 16, 109, 23);
-		panel.add(rdBtnEmail);
+		pnlIngresoAnotaciones.add(rdBtnEmail);
 		buttonGroup.add(rdBtnEmail);
 		
-		JLabel lblNewLabel = new JLabel("Nombre");
+		lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setBounds(6, 56, 46, 14);
-		panel.add(lblNewLabel);
+		pnlIngresoAnotaciones.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(6, 81, 86, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(6, 81, 86, 20);
+		pnlIngresoAnotaciones.add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuario");
+		lblNewLabel_1 = new JLabel("Usuario");
 		lblNewLabel_1.setBounds(222, 56, 46, 14);
-		panel.add(lblNewLabel_1);
+		pnlIngresoAnotaciones.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(222, 81, 86, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		txtUser = new JTextField();
+		txtUser.setBounds(222, 81, 86, 20);
+		pnlIngresoAnotaciones.add(txtUser);
+		txtUser.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Clave");
+		lblNewLabel_2 = new JLabel("Clave");
 		lblNewLabel_2.setBounds(444, 56, 46, 14);
-		panel.add(lblNewLabel_2);
+		pnlIngresoAnotaciones.add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(444, 81, 86, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		txtPasw = new JTextField();
+		txtPasw.setBounds(444, 81, 86, 20);
+		pnlIngresoAnotaciones.add(txtPasw);
+		txtPasw.setColumns(10);
 		
-		JButton btnRegistrar = new JButton("Guardar");
+		btnRegistrar = new JButton("Guardar");
 		btnRegistrar.setBounds(464, 114, 89, 23);
-		panel.add(btnRegistrar);
+		btnRegistrar.addActionListener(contro);
+		pnlIngresoAnotaciones.add(btnRegistrar);
 	}
 	
 	public JButton getBtnBip() {
@@ -152,6 +154,14 @@ public class FrameAnotaciones extends JFrame {
 		this.datos = datos;
 	}
 	
+	public JButton getBtnRegistrar() {
+		return btnRegistrar;
+	}
+
+	public ButtonGroup getButtonGroup() {
+		return buttonGroup;
+	}
+
 	public void modeloTabla() {
 		
 		Object O[]=null;
@@ -178,5 +188,31 @@ public class FrameAnotaciones extends JFrame {
 				aModel.removeRow(i);
 			}
 		}	
+	}
+	
+	public String btnSeleccionado() {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
+    }
+
+	public anotaciones obtenerAnotacion() {
+		if(validarVacios()) 
+			return new anotaciones(txtNombre.getText(),
+					txtUser.getText(),txtPasw.getText(), btnSeleccionado());
+		else return null;	
+	}
+
+	private boolean validarVacios() {
+		if(txtNombre.getText().equals("") ||
+				txtPasw.getText().equals("") ||
+				txtUser.getText().equals(""))return false;
+		else return true;
 	}
 }

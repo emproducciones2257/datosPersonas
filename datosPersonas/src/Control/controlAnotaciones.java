@@ -38,6 +38,20 @@ public class controlAnotaciones implements ActionListener {
 			
 			consultaAnotaciones(constantes.Email);	
 		}
+		
+		if(e.getSource().equals(fAnotacion.getBtnRegistrar())) {
+			
+			String seleccionado = fAnotacion.btnSeleccionado();
+			
+			if(seleccionado != null) {
+				anotaciones an = fAnotacion.obtenerAnotacion();
+				
+				if(an!=null) {
+					queryAnot.agregarAnotacion(an);
+				}else System.out.println("Complete datos");
+
+			}else System.out.println("Elija");
+		}		
 	}
 
 	private void consultaAnotaciones(String sitio) {
@@ -48,7 +62,6 @@ public class controlAnotaciones implements ActionListener {
 		}else {
 			eleccion = sitio;
 			anotaciones = new ArrayList<>();
-			queryAnot = new consultaAnotaciones();
 			anotaciones = queryAnot.recuperarAnotaciones(eleccion);
 			fAnotacion.setDatos(anotaciones);
 			fAnotacion.limpiarTabla();
