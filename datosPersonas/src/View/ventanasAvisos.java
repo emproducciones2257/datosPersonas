@@ -37,6 +37,8 @@ public class ventanasAvisos {
 
 	public static final String NO_HAY_ANOTACIONES_CATEGORIA = "No se registras anotaciones para esta categoria";
 
+	public static final String SELECCIONAR_SITIO = "Seleccionar sitio del recordatorio";
+
 	
 	public ventanasAvisos(JPanel vista) {
 		this.vista=vista;

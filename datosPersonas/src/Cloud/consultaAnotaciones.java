@@ -45,24 +45,23 @@ public class consultaAnotaciones {
 			avisos.errorConsulta(ventanasAvisos.ERROR_CONSULTA, e.getMessage());
 		}
 		
-		//Collections.sort(datos);
+		Collections.sort(anotaciones);
 	
 		return anotaciones;
 	}
 
-	public void agregarAnotacion(Model.anotaciones an) {
+	public void agregarAnotacion(anotaciones an) {
 			
 		try {
 			refAnotaciones = conectFirebase.getFirestore().collection(constantes.ANOTACIONES);
 			
 			future = refAnotaciones.add(an);
 			System.out.println("Added document with ID: " + future.get().getId());
+			avisos.cargaCorrecta(ventanasAvisos.CARGA_OK);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			avisos.CargaErronea(ventanasAvisos.CARGA_ERROR);
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			avisos.CargaErronea(ventanasAvisos.CARGA_ERROR);
 		}
 	}
 }

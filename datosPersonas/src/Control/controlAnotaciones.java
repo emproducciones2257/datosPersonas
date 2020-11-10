@@ -7,6 +7,7 @@ import Cloud.consultaAnotaciones;
 import Model.anotaciones;
 import Model.constantes;
 import View.FrameAnotaciones;
+import View.ventanasAvisos;
 
 public class controlAnotaciones implements ActionListener {
 	
@@ -14,11 +15,13 @@ public class controlAnotaciones implements ActionListener {
 	private String eleccion = "";
 	private consultaAnotaciones queryAnot;
 	private ArrayList<anotaciones> anotaciones;
+	private ventanasAvisos aviso;
 	
 	public controlAnotaciones(FrameAnotaciones fAnotacion) {
 		this.fAnotacion = fAnotacion;
 		queryAnot = new consultaAnotaciones();
 		anotaciones = new ArrayList<>();
+		aviso = new ventanasAvisos(null);
 	}
 
 	@Override
@@ -48,10 +51,16 @@ public class controlAnotaciones implements ActionListener {
 				
 				if(an!=null) {
 					queryAnot.agregarAnotacion(an);
-				}else System.out.println("Complete datos");
+					fAnotacion.limpiarElementos();
+				}else aviso.faltanDatos(ventanasAvisos.FALTAN_DATOS);
 
-			}else System.out.println("Elija");
-		}		
+			}else aviso.faltanDatos(ventanasAvisos.SELECCIONAR_SITIO);
+		}
+		
+		if(e.getSource().equals(fAnotacion.getBtnEditar())) {
+			//
+			
+		}
 	}
 
 	private void consultaAnotaciones(String sitio) {

@@ -1,6 +1,6 @@
 package Model;
 
-public class anotaciones {
+public class anotaciones implements Comparable<anotaciones>{
 
 	private String nombre;
 	private String user;
@@ -54,5 +54,18 @@ public class anotaciones {
 	@Override
 	public String toString() {
 		return "anotaciones [nombre=" + nombre + ", user=" + user + ", pasw=" + pasw + ", Sitio=" + Sitio + "]";
+	}
+
+	@Override
+	public int compareTo(anotaciones persona) {
+		int i = 0;
+		
+		if(persona.getNombre().compareToIgnoreCase(this.getNombre())<0)i = 1;
+		
+		if(persona.getNombre().compareToIgnoreCase(this.getNombre())>0)i = - 1;
+		
+		if(persona.getNombre().compareToIgnoreCase(this.getNombre())==0);
+		
+		return i;
 	}	
 }

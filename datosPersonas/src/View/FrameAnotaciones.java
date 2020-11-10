@@ -1,22 +1,17 @@
 package View;
 
 import javax.swing.*;
-import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.util.*;
+import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
-
 import Control.controlAnotaciones;
 import Model.anotaciones;
-import java.awt.Color;
-import javax.swing.border.TitledBorder;
 
 public class FrameAnotaciones extends JFrame {
 
 	private JPanel contentPane,pnlIngresoAnotaciones;
-	private JButton btnBip, btnAfip, btnEmail, btnRegistrar;
+	private JButton btnBip, btnAfip, btnEmail, btnRegistrar, btnEditar;
 	private JTable tblDtos;
 	private DefaultTableModel aModel;
 	private JScrollPane scrollPane;
@@ -132,6 +127,10 @@ public class FrameAnotaciones extends JFrame {
 		btnRegistrar.setBounds(464, 114, 89, 23);
 		btnRegistrar.addActionListener(contro);
 		pnlIngresoAnotaciones.add(btnRegistrar);
+		
+		btnEditar = new JButton("Actualizar");
+		btnEditar.setBounds(6, 114, 89, 23);
+		pnlIngresoAnotaciones.add(btnEditar);
 	}
 	
 	public JButton getBtnBip() {
@@ -157,11 +156,15 @@ public class FrameAnotaciones extends JFrame {
 	public JButton getBtnRegistrar() {
 		return btnRegistrar;
 	}
+	
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
 
 	public ButtonGroup getButtonGroup() {
 		return buttonGroup;
 	}
-
+	
 	public void modeloTabla() {
 		
 		Object O[]=null;
@@ -214,5 +217,12 @@ public class FrameAnotaciones extends JFrame {
 				txtPasw.getText().equals("") ||
 				txtUser.getText().equals(""))return false;
 		else return true;
+	}
+	
+	public void limpiarElementos() {
+		txtNombre.setText("");
+		txtPasw.setText("");
+		txtUser.setText("");
+		buttonGroup.clearSelection();
 	}
 }
